@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary"
+            >
+            <Button
+                android:id="@+id/booking_tabl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_margin="10dp"
+                android:text="Book"/>
+            <Button
+                android:id="@+id/cancel_booking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_margin="10dp"
+                android:text="Cancel"/>
+        </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/customer_list_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:background="#B7950B"
+                    >
+                    <TextView
+                        android:id="@+id/reserv_tabl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:textColor="#e40707"
+                        android:text="Reserved: R"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="Available: A"/>
+                </LinearLayout>
+
+                <GridView
+                    android:id="@+id/tabz_grid"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:horizontalSpacing="5dp"
+                    android:numColumns="6"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="5dp"></GridView>
+            </LinearLayout>
+            </LinearLayout>
+    </LinearLayout>
+</layout>

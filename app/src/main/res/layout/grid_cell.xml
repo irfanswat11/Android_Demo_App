@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <com.irfanulhaq.restaurantreservation.mvp.views.SquarGridCells
+        android:id="@+id/grid_cell_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/colorPrimary"
+        android:gravity="center">
+            <TextView
+                android:id="@+id/table_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="25sp"
+                android:textColor="#e9d524"
+                android:gravity="center"/>
+    </com.irfanulhaq.restaurantreservation.mvp.views.SquarGridCells>
+</layout>
