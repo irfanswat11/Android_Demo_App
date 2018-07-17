@@ -19,7 +19,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.irfanulhaq.restaurantreservation.BgService;
+import com.irfanulhaq.restaurantreservation.SchedulingService;
 import com.irfanulhaq.restaurantreservation.Utils.ConstantsUtils;
 import com.irfanulhaq.restaurantreservation.R;
 import com.irfanulhaq.restaurantreservation.databinding.FragmentTableBinding;
@@ -27,10 +27,8 @@ import com.irfanulhaq.restaurantreservation.databinding.GridCellBinding;
 import com.irfanulhaq.restaurantreservation.mvp.models.CustomerModel;
 import com.irfanulhaq.restaurantreservation.mvp.presenters.TablePresenter;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -117,7 +115,7 @@ public class TableFragment extends BaseFragment implements TableMVPview {
         layoutBinding.bookingTabl.setOnClickListener(onClickListener);
         layoutBinding.cancelBooking.setOnClickListener(onClickListener);
         LocalBroadcastManager.getInstance(getContext()).registerReceiver(broadcastReceiver, new IntentFilter(ConstantsUtils.TABLE_FRAG_BROADCAST));
-        getContext().startService(new Intent(getContext(), BgService.class));
+        getContext().startService(new Intent(getContext(), SchedulingService.class));
     }
 
 

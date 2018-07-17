@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.irfanulhaq.restaurantreservation.Utils.ConstantsUtils;
 import com.irfanulhaq.restaurantreservation.CustomRecyclVwrAdapter;
-import com.irfanulhaq.restaurantreservation.OnActionListener;
+import com.irfanulhaq.restaurantreservation.OnBackPressListener;
 import com.irfanulhaq.restaurantreservation.R;
 import com.irfanulhaq.restaurantreservation.databinding.FragmentCustomerBinding;
 import com.irfanulhaq.restaurantreservation.databinding.RecyclerViewRowBinding;
@@ -28,7 +28,7 @@ import com.irfanulhaq.restaurantreservation.mvp.presenters.CustomerPresenter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerFragment extends BaseFragment implements CustomerMVPView, OnActionListener {
+public class CustomerFragment extends BaseFragment implements CustomerMVPView, OnBackPressListener {
     FragmentCustomerBinding layoutBinding;
     CustomerPresenter customerPresenter;
     ActivityInteraction callbacks;

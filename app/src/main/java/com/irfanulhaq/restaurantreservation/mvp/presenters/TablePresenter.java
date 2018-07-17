@@ -2,6 +2,7 @@ package com.irfanulhaq.restaurantreservation.mvp.presenters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.IInterface;
 import android.support.v4.content.LocalBroadcastManager;
 
 import com.irfanulhaq.restaurantreservation.Utils.ConstantsUtils;
@@ -15,6 +16,7 @@ import com.irfanulhaq.restaurantreservation.mvp.views.TableMVPview;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Handler;
@@ -40,7 +42,9 @@ public class TablePresenter extends BaseMvpPresenter<TableMVPview> {
         try {
             HashMap<Integer,Integer> oldReservation = DataUtils.getData(Integer.class,Integer.class,context,ConstantsUtils.TABLS_BOOKING_KEY);
             if(oldReservation != null){
-                oldReservation.putAll(bookedTables);
+                for (Map.Entry<Integer,Integer> entry: bookedTables.entrySet()){
+                    oldReservation.put(entry.getKey(),entry.getValue());
+                }
                 DataUtils.saveData(context,oldReservation,ConstantsUtils.TABLS_BOOKING_KEY);
             }else {
                 DataUtils.saveData(context,bookedTables,ConstantsUtils.TABLS_BOOKING_KEY);

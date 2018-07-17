@@ -28,7 +28,7 @@ import java.util.stream.IntStream;
 public class DataUtils {
 
     public static <T> boolean saveData(Context context, List<T> list, String key) {
-        String jsonString = list == null ? null : JsonUtility.fromListToJsonString(list);
+        String jsonString = (list == null) ? null : JsonUtility.fromListToJsonString(list);
         return DataUtils.SharedPrefDataUtils.setStringSharedPref(context, key, jsonString);
     }
 

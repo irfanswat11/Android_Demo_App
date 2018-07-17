@@ -16,9 +16,10 @@ import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class BgService extends Service {
+public class SchedulingService extends Service {
 
     Timer timer = new Timer();
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -29,27 +30,20 @@ public class BgService extends Service {
     public void onCreate() {
         super.onCreate();
     }
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                HashMap<Integer,Integer> bookedTables = null;
-                try {
-                    Boolean isBooked = DataUtils.getData(Integer.class,Integer.class,getApplicationContext(),ConstantsUtils.TABLS_BOOKING_KEY)== null?false:true;
-                    if(isBooked){
-                        DataUtils.saveData(getApplicationContext(),bookedTables,ConstantsUtils.TABLS_BOOKING_KEY);
-                        if(DataUtils.SharedPrefDataUtils.getBooleanSharedPref(getApplicationContext(),ConstantsUtils.MAIN_ACTIVITY_RUNNING)) {
-                            Intent intent = new Intent(ConstantsUtils.TABLE_FRAG_BROADCAST);
-                            LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
-                        }else {
-                            stopSelf();
-                        }
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
+                HashMap<Integer, Integer> bookedTables = null;
+                DataUtils.saveData(getApplicationContext(), bookedTables, ConstantsUtils.TABLS_BOOKING_KEY);
+                if (DataUtils.SharedPrefDataUtils.getBooleanSharedPref(getApplicationContext(), ConstantsUtils.MAIN_ACTIVITY_RUNNING)) {
+                    Intent intent = new Intent(ConstantsUtils.TABLE_FRAG_BROADCAST);
+                    LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
+                } else {
+                    stopSelf();
                 }
-
             }
         }, ConstantsUtils.RESET_INTERVAL, ConstantsUtils.RESET_INTERVAL);
         return START_STICKY;
@@ -59,5 +53,6 @@ public class BgService extends Service {
     public void onDestroy() {
         super.onDestroy();
         timer.cancel();
+        timer.purge();
     }
 }

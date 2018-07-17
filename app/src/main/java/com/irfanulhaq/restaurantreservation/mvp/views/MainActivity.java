@@ -2,12 +2,11 @@ package com.irfanulhaq.restaurantreservation.mvp.views;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 
 import com.irfanulhaq.restaurantreservation.Utils.ConstantsUtils;
 import com.irfanulhaq.restaurantreservation.FragmentHandler;
-import com.irfanulhaq.restaurantreservation.OnActionListener;
+import com.irfanulhaq.restaurantreservation.OnBackPressListener;
 import com.irfanulhaq.restaurantreservation.R;
 import com.irfanulhaq.restaurantreservation.Utils.DataUtils;
 import com.irfanulhaq.restaurantreservation.databinding.ActivityMainBinding;
@@ -22,7 +21,7 @@ public class MainActivity extends BaseActivity implements
     private ActivityMainBinding mActivityBinding;
     private MainActivityPresenter presenter;
     private boolean[] tableStates;
-    private OnActionListener onActionListener;
+    private OnBackPressListener onBackPressListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +59,7 @@ public class MainActivity extends BaseActivity implements
         mActivityBinding.splash.setVisibility(View.GONE);
         mActivityBinding.fragmentContainer.setVisibility(View.VISIBLE);
         CustomerFragment customerFragment = new CustomerFragment();
-        onActionListener = customerFragment;
+        onBackPressListener = customerFragment;
         Bundle bundle = new Bundle();
         bundle.putString("str", "data On the way");
         bundle.putParcelableArrayList(ConstantsUtils.CUSTOMERS_LIST_KEY, (ArrayList) customerList);
@@ -71,8 +70,8 @@ public class MainActivity extends BaseActivity implements
 
     @Override
     public void onBackPressed() {
-        if(onActionListener != null && ((CustomerFragment)onActionListener).isResumed()) {
-            onActionListener.onBackPress(this);
+        if(onBackPressListener != null && ((CustomerFragment) onBackPressListener).isResumed()) {
+            onBackPressListener.onBackPress(this);
         }
         super.onBackPressed();
     }
@@ -82,8 +81,8 @@ public class MainActivity extends BaseActivity implements
         this.tableStates = tableStats;
     }
 
-    public void setOnActionListener(OnActionListener onActionListener){
-        this.onActionListener = onActionListener;
+    public void setOnBackPressListener(OnBackPressListener onBackPressListener){
+        this.onBackPressListener = onBackPressListener;
     }
 
     @Override
